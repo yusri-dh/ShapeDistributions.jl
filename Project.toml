@@ -1,0 +1,13 @@
+name = "ShapeDistributions"
+uuid = "882c3b76-dfca-47ed-8b8f-1858eb29a55c"
+authors = ["Yusri Dwi Heryanto"]
+version = "0.1.0"
+
+[compat]
+julia = "1.1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
