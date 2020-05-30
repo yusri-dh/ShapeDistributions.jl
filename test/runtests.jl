@@ -2,7 +2,6 @@ using ShapeDistributions
 using GeometryBasics
 using LinearAlgebra
 using Statistics
-using Distributions
 using Test
 include("test_distances.jl")
 include("test_sampling.jl")
