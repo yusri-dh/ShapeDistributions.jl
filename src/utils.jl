@@ -1,5 +1,5 @@
 function centroid(
-    verts::AbstractVector{Point{3,T1}},
+    verts::AbstractVector{<:AbstractPoint{3,T1}},
 ) where {T1 <: Real}
     centroid_point = reduce(+, verts) / length(verts)
     return centroid_point
@@ -8,7 +8,7 @@ function centroid(mesh)
     verts = coordinates(mesh)
     centroid_point = centroid(verts)
 end
-function decompose_vertex_and_face(mesh)
+function decompose_vertex_and_face(mesh::Mesh)
     verts = coordinates(mesh)
     triangles = faces(mesh)
     return verts, triangles
@@ -24,7 +24,7 @@ function angle_between_vector(v1, v2)
     return theta
 end
 
-function calculate_area_bins(verts::AbstractVector{Point{3,T1}},
+function calculate_area_bins(verts::AbstractVector{<:AbstractPoint{3,T1}},
             triangles::AbstractVector{<:TriangleFace},
             ) where T1 <: AbstractFloat
     areas_array = area.(Ref(verts), triangles)

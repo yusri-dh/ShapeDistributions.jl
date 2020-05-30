@@ -8,11 +8,11 @@ function point_sampling_triangle(v1, v2, v3)
 end
 
 function point_sampling(
-    verts::AbstractVector{Point{3,T1}},
+    verts::AbstractVector{<:AbstractPoint{3,T1}},
     triangles::AbstractVector{<:TriangleFace},
     bins::AbstractVector{<:Real}) where T1 <: AbstractFloat
-    @assert issorted(bins) "Last argument must be sorted in increasing order"
-    @assert isapprox(bins[end], 1.0) "The last element must be 1.0"
+    # @assert issorted(bins) "Last argument must be sorted in increasing order"
+    # @assert isapprox(bins[end], 1.0) "The last element must be 1.0"
     random_number = rand()
     idx = searchsortedfirst(bins, random_number)
     face = triangles[idx]
@@ -20,14 +20,10 @@ function point_sampling(
     point = point_sampling_triangle(v1, v2, v3)
     return point
 end
-function point_sampling(mesh::Mesh, bins)
-    verts = coordinates(mesh)
-    triangles = faces(mesh)
-    return point_sampling(verts, triangles, bins)
-end
+
 
 function points_sampling(
-    verts::AbstractVector{Point{3,T1}},
+    verts::AbstractVector{<:AbstractPoint{3,T1}},
     triangles::AbstractVector{<:TriangleFace},
     n_sample::Int) where T1 <: AbstractFloat
     @assert n_sample > 0 "n must be a positive integer"
